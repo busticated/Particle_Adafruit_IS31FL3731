@@ -1,14 +1,13 @@
 #include "Particle.h"
-#include "Adafruit_GFX.h"
-#include "Adafruit_IS31FL3731.h"
+#include "Particle_Adafruit_IS31FL3731.h"
 
 void setup();
 void loop();
 
 // If you're using the full breakout...
-// Adafruit_IS31FL3731 ledmatrix = Adafruit_IS31FL3731();
+// Particle_Adafruit_IS31FL3731 ledmatrix = Particle_Adafruit_IS31FL3731();
 // If you're using the FeatherWing version
-Adafruit_IS31FL3731_Wing ledmatrix = Adafruit_IS31FL3731_Wing();
+Particle_Adafruit_IS31FL3731_Wing ledmatrix = Particle_Adafruit_IS31FL3731_Wing();
 
 
 // The lookup table to make the brightness changes be more visible
@@ -32,7 +31,7 @@ void loop(){
   for (uint8_t incr = 0; incr < 24; incr++){
     for (uint8_t x = 0; x < 16; x++){
       for (uint8_t y = 0; y < 9; y++){
-        ledmatrix.drawPixel(x, y, sweep[(x+y+incr)%24]);
+        ledmatrix.drawPixel(x, y, sweep[(x + y + incr) % 24]);
       }
     }
   }

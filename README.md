@@ -22,12 +22,12 @@ via Particle Workbench:
 Start by creating a new matrix object with something like:
 
 ```
-#include "Adafruit_IS31FL3731.h"
+#include "Particle_Adafruit_IS31FL3731.h"
 
 // If you're using the full breakout...
-// Adafruit_IS31FL3731 ledmatrix = Adafruit_IS31FL3731();
+// Particle_Adafruit_IS31FL3731 ledmatrix = Particle_Adafruit_IS31FL3731();
 // If you're using the FeatherWing version
-Adafruit_IS31FL3731_Wing ledmatrix = Adafruit_IS31FL3731_Wing();
+Particle_Adafruit_IS31FL3731_Wing ledmatrix = Particle_Adafruit_IS31FL3731_Wing();
 ```
 
 Then in your setup, call `.begin(<address>)` to initialize the driver. `.begin()` will return false if the matrix was not found, and `true`  if initialization succeeded.

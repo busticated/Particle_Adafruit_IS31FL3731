@@ -1,6 +1,6 @@
 #include "Particle.h"
 #include "Adafruit_GFX.h"
-#include "Adafruit_IS31FL3731.h"
+#include "Particle_Adafruit_IS31FL3731.h"
 
 #ifndef _swap_int16_t
 #define _swap_int16_t(a, b) { int16_t t = a; a = b; b = t; }
@@ -8,13 +8,13 @@
 
 
 /* Constructor */
-Adafruit_IS31FL3731::Adafruit_IS31FL3731(uint8_t x, uint8_t y) : Adafruit_GFX(x, y) {
+Particle_Adafruit_IS31FL3731::Particle_Adafruit_IS31FL3731(uint8_t x, uint8_t y) : Adafruit_GFX(x, y) {
 }
 
-Adafruit_IS31FL3731_Wing::Adafruit_IS31FL3731_Wing(void) : Adafruit_IS31FL3731(15, 7) {
+Particle_Adafruit_IS31FL3731_Wing::Particle_Adafruit_IS31FL3731_Wing(void) : Particle_Adafruit_IS31FL3731(15, 7) {
 }
 
-boolean Adafruit_IS31FL3731::begin(uint8_t addr) {
+boolean Particle_Adafruit_IS31FL3731::begin(uint8_t addr) {
   Wire.begin();
 
   _i2caddr = addr;
@@ -46,7 +46,7 @@ boolean Adafruit_IS31FL3731::begin(uint8_t addr) {
   return true;
 }
 
-void Adafruit_IS31FL3731::clear(void) {
+void Particle_Adafruit_IS31FL3731::clear(void) {
   // all LEDs on & 0 PWM
 
   selectBank(_frame);
@@ -62,13 +62,13 @@ void Adafruit_IS31FL3731::clear(void) {
   }
 }
 
-void Adafruit_IS31FL3731::setLEDPWM(uint8_t lednum, uint8_t pwm, uint8_t bank) {
+void Particle_Adafruit_IS31FL3731::setLEDPWM(uint8_t lednum, uint8_t pwm, uint8_t bank) {
   if (lednum >= 144) return;
   writeRegister8(bank, 0x24+lednum, pwm);
 }
 
 
-void Adafruit_IS31FL3731_Wing::drawPixel(int16_t x, int16_t y, uint16_t color) {
+void Particle_Adafruit_IS31FL3731_Wing::drawPixel(int16_t x, int16_t y, uint16_t color) {
  // check rotation, move pixel around if necessary
   switch (getRotation()) {
   case 1:
@@ -105,7 +105,7 @@ void Adafruit_IS31FL3731_Wing::drawPixel(int16_t x, int16_t y, uint16_t color) {
 
 
 
-void Adafruit_IS31FL3731::drawPixel(int16_t x, int16_t y, uint16_t color) {
+void Particle_Adafruit_IS31FL3731::drawPixel(int16_t x, int16_t y, uint16_t color) {
  // check rotation, move pixel around if necessary
   switch (getRotation()) {
   case 1:
@@ -130,24 +130,24 @@ void Adafruit_IS31FL3731::drawPixel(int16_t x, int16_t y, uint16_t color) {
   return;
 }
 
-void Adafruit_IS31FL3731::setFrame(uint8_t f) {
+void Particle_Adafruit_IS31FL3731::setFrame(uint8_t f) {
   _frame = f;
 }
 
-void Adafruit_IS31FL3731::displayFrame(uint8_t f) {
+void Particle_Adafruit_IS31FL3731::displayFrame(uint8_t f) {
   if (f > 7) f = 0;
   writeRegister8(ISSI_BANK_FUNCTIONREG, ISSI_REG_PICTUREFRAME, f);
 }
 
 
-void Adafruit_IS31FL3731::selectBank(uint8_t b) {
+void Particle_Adafruit_IS31FL3731::selectBank(uint8_t b) {
  Wire.beginTransmission(_i2caddr);
  Wire.write((byte)ISSI_COMMANDREGISTER);
  Wire.write(b);
  Wire.endTransmission();
 }
 
-void Adafruit_IS31FL3731::audioSync(boolean sync) {
+void Particle_Adafruit_IS31FL3731::audioSync(boolean sync) {
   if (sync) {
     writeRegister8(ISSI_BANK_FUNCTIONREG, ISSI_REG_AUDIOSYNC, 0x1);
   } else {
@@ -156,7 +156,7 @@ void Adafruit_IS31FL3731::audioSync(boolean sync) {
 }
 
 /*************/
-void Adafruit_IS31FL3731::writeRegister8(uint8_t b, uint8_t reg, uint8_t data) {
+void Particle_Adafruit_IS31FL3731::writeRegister8(uint8_t b, uint8_t reg, uint8_t data) {
   selectBank(b);
 
   Wire.beginTransmission(_i2caddr);
@@ -167,7 +167,7 @@ void Adafruit_IS31FL3731::writeRegister8(uint8_t b, uint8_t reg, uint8_t data) {
   //Serial.print(" = 0x"); Serial.println(data, HEX);
 }
 
-uint8_t  Adafruit_IS31FL3731::readRegister8(uint8_t bank, uint8_t reg) {
+uint8_t  Particle_Adafruit_IS31FL3731::readRegister8(uint8_t bank, uint8_t reg) {
  uint8_t x;
 
  selectBank(bank);

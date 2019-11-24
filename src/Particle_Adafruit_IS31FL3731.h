@@ -1,5 +1,5 @@
-#ifndef _ADAFRUIT_IS31FL3731_H_
-#define _ADAFRUIT_IS31FL3731_H_
+#ifndef _Particle_Adafruit_IS31FL3731_H_
+#define _Particle_Adafruit_IS31FL3731_H_
 
 #include "Particle.h"
 #include "Adafruit_GFX.h"
@@ -24,9 +24,9 @@
 #define ISSI_BANK_FUNCTIONREG 0x0B    // helpfully called 'page nine'
 
 
-class Adafruit_IS31FL3731 : public Adafruit_GFX {
+class Particle_Adafruit_IS31FL3731 : public Adafruit_GFX {
  public:
-  Adafruit_IS31FL3731(uint8_t x=16, uint8_t y=9); 
+  Particle_Adafruit_IS31FL3731(uint8_t x=16, uint8_t y=9); 
   boolean begin(uint8_t addr = ISSI_ADDR_DEFAULT);
   void drawPixel(int16_t x, int16_t y, uint16_t color);
   void clear(void);
@@ -43,9 +43,9 @@ class Adafruit_IS31FL3731 : public Adafruit_GFX {
   uint8_t _i2caddr, _frame;
 };
 
-class Adafruit_IS31FL3731_Wing : public Adafruit_IS31FL3731 {
+class Particle_Adafruit_IS31FL3731_Wing : public Particle_Adafruit_IS31FL3731 {
  public:
-  Adafruit_IS31FL3731_Wing(void);
+  Particle_Adafruit_IS31FL3731_Wing(void);
   void drawPixel(int16_t x, int16_t y, uint16_t color);
 };
 

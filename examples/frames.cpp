@@ -1,14 +1,13 @@
 #include "Particle.h"
-#include "Adafruit_GFX.h"
-#include "Adafruit_IS31FL3731.h"
+#include "Particle_Adafruit_IS31FL3731.h"
 
 void setup();
 void loop();
 
 // If you're using the full breakout...
-// Adafruit_IS31FL3731 ledmatrix = Adafruit_IS31FL3731();
+// Particle_Adafruit_IS31FL3731 ledmatrix = Particle_Adafruit_IS31FL3731();
 // If you're using the FeatherWing version
-Adafruit_IS31FL3731_Wing ledmatrix = Adafruit_IS31FL3731_Wing();
+Particle_Adafruit_IS31FL3731_Wing ledmatrix = Particle_Adafruit_IS31FL3731_Wing();
 
 void setup(){
   Serial.begin(9600);
