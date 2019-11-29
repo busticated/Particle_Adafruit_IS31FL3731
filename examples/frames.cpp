@@ -9,12 +9,16 @@ void loop();
 // If you're using the FeatherWing version
 Particle_Adafruit_IS31FL3731_Wing ledmatrix = Particle_Adafruit_IS31FL3731_Wing();
 
+// list of text to drawn on each frame
+String frames[] = { "07", "16", "25", "34", "43", "52", "61", "70" };
+
 void setup(){
   Serial.begin(9600);
   Serial.println("ISSI manual animation test");
-  
+
   // call .begin(address) to initialize the driver.
-  // .begin() will return false if the matrix was not found, and true if initialization succeeded
+  // .begin() will return false if the matrix was not found,
+  // true if initialization succeeded
   if (!ledmatrix.begin()){
     Serial.println("IS31 not found");
     while (1);
@@ -22,26 +26,33 @@ void setup(){
   Serial.println("IS31 Found!");
   
   ledmatrix.setTextWrap(false);
-  ledmatrix.setTextColor(64); // quarter brightness
+  ledmatrix.setTextColor(32, 0);
   ledmatrix.setTextSize(1);
-
-  // fill all 8 frames with some text
-  for (uint8_t frame = 0; frame < 8; ++frame){
-    ledmatrix.clear();
-    ledmatrix.setFrame(frame);
+  
+  // draw each frame
+  for (size_t i = 0; i < arraySize(frames); ++i){
+    ledmatrix.setFrame(i);
     ledmatrix.setCursor(0, 0);
-    ledmatrix.write('a' + frame * 3);
-    ledmatrix.write('b' + frame * 3);
-    ledmatrix.write('c' + frame * 3);
+    ledmatrix.fillScreen(0);
+    ledmatrix.print(frames[i]);
+    Serial.printlnf("Frame: %i", i);
   }
 }
 
-int x = 0;
-
 void loop(){
+  int count = arraySize(frames);
+  int ms = 250;
+
   // display each frame for 250 milliseconds
-  for (uint8_t frame = 0; frame < 8; ++frame){
-    ledmatrix.displayFrame(frame);
-    delay(250);
+  for (int i = 0; i < count; ++i){
+    ledmatrix.displayFrame(i);
+    Serial.printlnf("Showing Frame: %i", i);
+    delay(ms);
+  }
+  // now in reverse order
+  for (int i = count - 2; i > 0; --i){
+    ledmatrix.displayFrame(i);
+    Serial.printlnf("Showing Frame: %i", i);
+    delay(ms);
   }
 }
