@@ -1,6 +1,6 @@
 # Particle_Adafruit_IS31FL3731
 
-A Particle library for the Adafruit IS31FL3731 Charlieplex LED driver and CharliePlex FeatherWing. Forked from [adafruit/Adafruit_IS31FL3731](https://github.com/adafruit/Adafruit_IS31FL3731)
+A Particle library for the Adafruit IS31FL3731 [Charlieplex LED driver](https://learn.adafruit.com/i31fl3731-16x9-charliplexed-pwm-led-driver) and [CharliePlex FeatherWing](https://learn.adafruit.com/adafruit-15x7-7x15-charlieplex-led-matrix-charliewing-featherwing). Forked from [adafruit/Adafruit_IS31FL3731](https://github.com/adafruit/Adafruit_IS31FL3731)
 
 
 ## Installation
